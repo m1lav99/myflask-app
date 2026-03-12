@@ -1,0 +1,14 @@
+name: CI Build Check
+on:
+  push:
+    branches: [ "main" ] # запускать, когда пушим в ветку main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # копирует код внутрь GitHub
+
+      - name: Build Docker Image
+        run: docker build . --file Dockerfile -t my-test-app:latest
